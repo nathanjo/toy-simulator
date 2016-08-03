@@ -1,36 +1,56 @@
 require 'spec_helper'
 
-describe 'Robot' do
+describe Robot do
 
   let(:robot) {Robot.new}
 
-  context 'commands' do
-    it 'correct instruction' do
-      expect(robot.commands(:move)).to be_truthy
+  subject { robot.facing(:north) }
+
+  left = {north: :west, south: :east, east: :north, west: :south}
+  right = {north: :east, south: :west, east: :south, west: :north}
+  
+  coord_north = {:x => 0, :y => 1}
+  coord_south = {:x => 0, :y => -1}
+  coord_east = {:x => 1, :y => 0}
+  coord_west = {:x => -1, :y => 0}
+
+  context 'orientation' do
+
+    it 'should have orientation accesor' do
+      expect(robot.facing(:north)).not_to eq(nil)
     end
 
-    it 'not correct instruction' do
-      expect(robot.commands(:moves)).to be_falsy
+    it 'has incorrect orientation' do
+      expect(robot.facing(:norths)).to eq(nil)
     end
+
+    it 'should give correct left orientation' do
+      subject
+      expect(robot.left).to eq(left[:north])
+    end
+
+    it 'should give correct right orientation' do
+      subject
+      expect(robot.right).to eq(right[:north])
+    end
+
   end
 
   context 'coordinates' do
-    it 'returns values' do
-      expect(robot.coordinates(:north)).to be_a(Hash)
+
+    it 'returns hash coordinates' do
+      subject
+      expect(robot.coordinates).to be_a(Hash)
     end
 
-    it 'return nil' do
-      expect(robot.coordinates(:norths)).to eq(nil)
-    end
-  end
-
-  context 'orientation' do
-    it 'returns correct facing' do
-      expect(robot.orientation(:north)).to be_a(Hash)
+    it 'returns correct coordinates based by orientation' do
+      subject
+      expect(robot.coordinates).to eq(coord_north)
     end
 
-    it 'returns nil' do
-      expect(robot.orientation(:norths)).to eq(nil)
+    it 'returns incorrect coordinates based by orientation' do
+      subject
+      expect(robot.coordinates).not_to eq(coord_east)
     end
   end
 end

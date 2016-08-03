@@ -1,9 +1,25 @@
 class Robot
 
-  attr_accessor :facing
+  attr_accessor :orientation
+
+  def facing f
+    if [:north, :south, :east, :west].include? f
+      self.orientation = f
+    else
+      nil
+    end
+  end
+
+  def left
+    self.orientation = {north: :west, south: :east, east: :north, west: :south}[self.orientation]
+  end
+
+  def right
+    self.orientation = {north: :east, south: :west, east: :south, west: :north}[self.orientation]
+  end
   
-  def coordinates coord
-    case coord
+  def coordinates
+    case self.orientation
       when :north
         {:x => 0, :y => 1}
       when :east
@@ -14,33 +30,6 @@ class Robot
         {:x => -1, :y => 0}
       else
         nil
-    end
-  end
-
-  def orientation facing
-    if [:north, :south, :east, :west].include? facing
-      case facing
-        when :north
-          {left: :west, right: :east}
-        when :south
-          {left: :east, right: :west}
-        when :east
-          {left: :north, right: :south}
-        when :west
-          {left: :south, right: :north}
-        else
-          nil
-      end
-    else
-      nil
-    end
-  end
-
-  def commands command
-    if [:move, :left, :right, :report].include? command
-      true
-    else
-      false
     end
   end
 end

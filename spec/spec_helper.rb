@@ -102,4 +102,4 @@ RSpec.configure do |config|
 =end
 end
 
-require_relative '../toy_simulator/robot.rb'
+require_relative '../toy_simulator/simulator.rb'
