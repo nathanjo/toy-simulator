@@ -10,5 +10,7 @@ while a = gets
   if err == true
     puts msg
     exit
+  elsif a == "REPORT"
+    puts err
   end
 end

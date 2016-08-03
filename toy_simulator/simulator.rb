@@ -38,7 +38,7 @@ class Simulator
         unless placed?
           [true, "Requires to initialize Place first"]
         else
-          puts "Output: #{[@position[:x], @position[:y], @facing].join(",").upcase}"
+          return "Output: #{[@position[:x], @position[:y], @facing].join(",").upcase}"
         end
       else
         [true, "Command not found"]
