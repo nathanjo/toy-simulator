@@ -7,7 +7,6 @@ describe Simulator do
 
   before do 
     allow(Robot).to receive(:new).and_return(robot)
-    allow(Robot).to receive(:new).and_return(robot)
   end
 
   context 'arguments' do

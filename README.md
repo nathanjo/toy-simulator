@@ -25,12 +25,12 @@ commands.
 
 Example Data (robot_data.txt):
 
-PLACE 1,2,EAST 
-MOVE
-MOVE
-LEFT
-MOVE 
-REPORT
+    PLACE 1,2,EAST 
+    MOVE
+    MOVE
+    LEFT
+    MOVE 
+    REPORT
 
 ```
 Output: 3,3,NORTH
